@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "PostgreSQL": "Server=91.151.83.102;Port=5432;Database=QuizMingleSystemDbTeam3;User Id=ikragulkocakteam;Password=Uzk1djYNjZnSzO*jaf9JxQOIk;CommandTimeout=20;"
+  }
+}
