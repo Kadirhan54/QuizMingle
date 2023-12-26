@@ -18,7 +18,7 @@ namespace QuizMingle.Domain.Entities
         public string OptionC { get; set; }
         public string OptionD { get; set; }
 
-        public int QuizId { get; set; }
+        public Guid QuizId { get; set; }
         public Quiz Quiz { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace QuizMingle.Domain.Entities
         public Guid QuizId { get; set; }
         public Quiz Quiz { get; set; }
 
+        // UserQuizAnswers ile ilişki
         public ICollection<UserQuizAnswer> UserQuizAnswers { get; set; }
 
         public string CreatedByUserId{ get; set; }
