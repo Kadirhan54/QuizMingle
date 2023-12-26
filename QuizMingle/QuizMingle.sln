@@ -9,15 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8DB19052-01C3-473C-AD8A-6BC7F9908DF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMingle.Application", "Core\QuizMingle.Application\QuizMingle.Application.csproj", "{29BE2C88-049D-4E42-858D-3C895257770E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizMingle.Application", "Core\QuizMingle.Application\QuizMingle.Application.csproj", "{29BE2C88-049D-4E42-858D-3C895257770E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMingle.Domain", "Core\QuizMingle.Domain\QuizMingle.Domain.csproj", "{4237060C-4082-485F-BE93-FE1B6E1D58D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizMingle.Domain", "Core\QuizMingle.Domain\QuizMingle.Domain.csproj", "{4237060C-4082-485F-BE93-FE1B6E1D58D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMingle.Persistence", "Infrastructure\QuizMingle.Persistence\QuizMingle.Persistence.csproj", "{4A4BE3BC-416A-41CB-8199-538FA10B3E55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizMingle.Persistence", "Infrastructure\QuizMingle.Persistence\QuizMingle.Persistence.csproj", "{4A4BE3BC-416A-41CB-8199-538FA10B3E55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMingle.Infrastructure", "Infrastructure\QuizMingle.Infrastructure\QuizMingle.Infrastructure.csproj", "{3E45B667-6375-483E-A8FD-F9CEB4AB075F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMingle.API", "Presentation\QuizMingle.API\QuizMingle.API.csproj", "{09115225-CB73-404C-966E-3BC632FA8547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizMingle.API", "Presentation\QuizMingle.API\QuizMingle.API.csproj", "{09115225-CB73-404C-966E-3BC632FA8547}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{4A4BE3BC-416A-41CB-8199-538FA10B3E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A4BE3BC-416A-41CB-8199-538FA10B3E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A4BE3BC-416A-41CB-8199-538FA10B3E55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E45B667-6375-483E-A8FD-F9CEB4AB075F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E45B667-6375-483E-A8FD-F9CEB4AB075F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E45B667-6375-483E-A8FD-F9CEB4AB075F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E45B667-6375-483E-A8FD-F9CEB4AB075F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09115225-CB73-404C-966E-3BC632FA8547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09115225-CB73-404C-966E-3BC632FA8547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09115225-CB73-404C-966E-3BC632FA8547}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,7 +47,6 @@ Global
 		{29BE2C88-049D-4E42-858D-3C895257770E} = {F88C1BD1-9A1C-4CD9-B062-391A8806A795}
 		{4237060C-4082-485F-BE93-FE1B6E1D58D1} = {F88C1BD1-9A1C-4CD9-B062-391A8806A795}
 		{4A4BE3BC-416A-41CB-8199-538FA10B3E55} = {1548E026-E0E9-4682-BC55-A7A39BB9F3F6}
-		{3E45B667-6375-483E-A8FD-F9CEB4AB075F} = {1548E026-E0E9-4682-BC55-A7A39BB9F3F6}
 		{09115225-CB73-404C-966E-3BC632FA8547} = {8DB19052-01C3-473C-AD8A-6BC7F9908DF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
