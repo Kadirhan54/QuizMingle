@@ -8,6 +8,7 @@ namespace QuizMingle.Domain.Common
 {
     public interface IModifiedOn
     {
-        public DateTime ModifiedOn { get; set; }
+        public DateTimeOffset? ModifiedOn { get; set; }
+        public string? ModifiedByUserId { get; set; }
     }
 }
