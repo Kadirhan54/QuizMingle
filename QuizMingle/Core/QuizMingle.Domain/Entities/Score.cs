@@ -4,7 +4,7 @@ using QuizMingle.Domain.Identity;
 
 namespace QuizMingle.Domain.Entities
 {
-    public class Score : IEntityBase<Guid>
+    public class Score : EntityBase<Guid>
     {
         public Guid Id { get; set; }
         public int ScoreValue { get; set; }
