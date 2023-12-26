@@ -12,7 +12,7 @@ namespace QuizMingle.Domain.Entities
         public Guid QuizId { get; set; }
         public Quiz Quiz { get; set; }
 
-        public ICollection<UserQuizAnswers> UserQuizAnswers { get; set; }
+        public ICollection<UserQuizAnswer> UserQuizAnswers { get; set; }
 
         public string CreatedByUserId{ get; set; }
         public DateTimeOffset CreatedOn{ get; set; }
