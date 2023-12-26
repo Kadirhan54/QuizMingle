@@ -13,7 +13,7 @@ namespace QuizMingle.Persistence.Context
     {
         public QuizMingleDbContext CreateDbContext(string[] args)
         {
-            var basePath = $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName}\\Persistence\\QuizMingle.API\\";
+            var basePath = $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName}\\Presentation\\QuizMingle.API\\";
 
             IConfigurationRoot configuration = new ConfigurationBuilder()
                  .SetBasePath(basePath)

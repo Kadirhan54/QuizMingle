@@ -11,12 +11,12 @@ namespace QuizMingle.Persistence.Configurations.Identity
         {
             builder.HasKey(x => x.Id);
 
-            // UserQuiz one-many relationship
+            // UserQuiz ile ilişki
             builder.HasOne(x => x.UserQuiz)
                    .WithMany(x => x.UserQuizAnswers)
-                   .HasForeignKey(x => x.UserQuizId);
+                   .HasForeignKey(x => new { x.UserId, x.QuizId });
 
-            // Question one-many relationship
+            // Question ile ilişki
             builder.HasOne(x => x.Question)
                    .WithMany()
                    .HasForeignKey(x => x.QuestionId);
