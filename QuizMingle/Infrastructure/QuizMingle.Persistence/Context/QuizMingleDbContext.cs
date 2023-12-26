@@ -2,17 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
-using QuizMingle.Persistance.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuizMingle.Persistence.Context
 {
-    public class QuizMingleDbContext : IdentityDbContext
+    public class QuizMingleDbContext : IdentityDbContext<User, Role, Guid>
     {
 
         public DbSet<Question> Questions { get; set; }
@@ -23,17 +17,17 @@ namespace QuizMingle.Persistence.Context
             
         public DbSet<UserQuiz> UserQuizzes { get; set; }
 
-        protected override void OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(Configurations.GetString("ConnectionStrings:PostgreSQL"));
-        }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //protected override void OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
         //{
-        //    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-        //    base.OnModelCreating(modelBuilder);
+        //    optionsBuilder.UseNpgsql(Configurations.GetString("Team3PostgreSQLDBL"));
         //}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         public QuizMingleDbContext(DbContextOptions<QuizMingleDbContext> dbContextOptions) : base(dbContextOptions)
         {
