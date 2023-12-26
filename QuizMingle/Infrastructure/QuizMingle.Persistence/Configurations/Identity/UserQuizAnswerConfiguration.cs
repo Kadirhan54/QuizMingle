@@ -5,9 +5,9 @@ using QuizMingle.Domain.Entities;
 
 namespace QuizMingle.Persistence.Configurations.Identity
 {
-    public class UserQuizAnswersConfiguration : IEntityTypeConfiguration<UserQuizAnswers>
+    public class UserQuizAnswerConfiguration : IEntityTypeConfiguration<UserQuizAnswer>
     {
-        public void Configure(EntityTypeBuilder<UserQuizAnswers> builder)
+        public void Configure(EntityTypeBuilder<UserQuizAnswer> builder)
         {
             builder.HasKey(x => x.Id);
 
