@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuizMingle.Domain.Common
 {
-    public interface IModifiedOn
+    public interface IModifiedByEntity
     {
         public DateTimeOffset? ModifiedOn { get; set; }
         public string? ModifiedByUserId { get; set; }

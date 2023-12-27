@@ -2,7 +2,7 @@
 
 namespace QuizMingle.Domain.Common
 {
-    public interface IDeletedOn
+    public interface IDeletedByEntity
     {
         public string? DeletedByUserId { get; set; }
         public DateTimeOffset? DeletedOn { get; set; }

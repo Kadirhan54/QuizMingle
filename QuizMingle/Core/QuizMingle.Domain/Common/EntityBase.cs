@@ -2,7 +2,7 @@
 
 namespace QuizMingle.Domain.Common
 {
-    public abstract class EntityBase<TKey> : ICreatedOn, IModifiedOn, IDeletedOn
+    public abstract class EntityBase<TKey> : ICreatedByEntity, IModifiedByEntity, IDeletedByEntity
     {
         public TKey Id { get; set; }
 
