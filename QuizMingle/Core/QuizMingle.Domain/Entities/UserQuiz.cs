@@ -4,7 +4,7 @@ using QuizMingle.Domain.Identity;
 
 namespace QuizMingle.Domain.Entities
 {
-    public class UserQuiz : ICreatedOn
+    public class UserQuiz : ICreatedByEntity
     {
         public Guid UserId { get; set; }
         public User User { get; set; }

@@ -2,7 +2,7 @@
 
 namespace QuizMingle.Domain.Common
 {
-    public interface ICreatedOn
+    public interface ICreatedByEntity
     {
         public string CreatedByUserId { get; set; }
         public DateTimeOffset CreatedOn { get; set; }

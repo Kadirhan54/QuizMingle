@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using QuizMingle.Domain.Common;
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using System.Reflection;
@@ -27,6 +28,29 @@ namespace QuizMingle.Persistence.Context
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker.Entries();
+
+            foreach (var entry in entries)
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    ((ICreatedByEntity)entry.Entity).CreatedOn = DateTime.UtcNow;
+                }
+                else if (entry.State == EntityState.Modified)
+                {
+                    ((IModifiedByEntity)entry.Entity).ModifiedOn = DateTime.UtcNow;
+                }
+                else if (entry.State == EntityState.Deleted)
+                {
+                    ((IDeletedByEntity)entry.Entity).DeletedOn = DateTime.UtcNow;
+                }
+            }
+
+            return base.SaveChanges();
         }
     }
 }

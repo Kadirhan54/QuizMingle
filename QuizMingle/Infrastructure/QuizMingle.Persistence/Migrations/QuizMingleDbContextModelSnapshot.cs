@@ -184,7 +184,7 @@ namespace QuizMingle.Persistence.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Questions", (string)null);
                 });
 
             modelBuilder.Entity("QuizMingle.Domain.Entities.Quiz", b =>
@@ -272,7 +272,7 @@ namespace QuizMingle.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Scores");
+                    b.ToTable("Scores", (string)null);
                 });
 
             modelBuilder.Entity("QuizMingle.Domain.Entities.UserQuiz", b =>
@@ -294,7 +294,7 @@ namespace QuizMingle.Persistence.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("UserQuizzes");
+                    b.ToTable("UserQuizzes", (string)null);
                 });
 
             modelBuilder.Entity("QuizMingle.Domain.Entities.UserQuizAnswer", b =>
@@ -329,7 +329,7 @@ namespace QuizMingle.Persistence.Migrations
 
                     b.HasIndex("UserId", "QuizId");
 
-                    b.ToTable("UserQuizAnswers");
+                    b.ToTable("UserQuizAnswers", (string)null);
                 });
 
             modelBuilder.Entity("QuizMingle.Domain.Identity.Role", b =>

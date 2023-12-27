@@ -2,7 +2,7 @@
 
 namespace QuizMingle.Domain.Entities
 {
-    public class UserQuizAnswer : ICreatedOn
+    public class UserQuizAnswer : ICreatedByEntity
     {
         public Guid Id { get; set; }
         public string GivenAnswer { get; set; }
