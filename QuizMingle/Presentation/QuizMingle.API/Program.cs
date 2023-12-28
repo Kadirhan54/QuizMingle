@@ -27,21 +27,19 @@ builder.Services.AddDbContext<QuizMingleDbContext>(options =>
     options.UseNpgsql(connectionString);
 });
 
-builder.Services.AddIdentity<User, Role>(options =>
+
+builder.Services.AddIdentityCore<User>(options =>
 {
-    // User Password Options
+    options.SignIn.RequireConfirmedAccount = false;
+    options.User.RequireUniqueEmail = true;
     options.Password.RequireDigit = false;
     options.Password.RequiredLength = 6;
-    options.Password.RequiredUniqueChars = 0;
     options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
-    // User Username and Email Options
-    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@$";
-    options.User.RequireUniqueEmail = true;
+    options.Password.RequireLowercase = false;
+})
+.AddEntityFrameworkStores<QuizMingleDbContext>();
 
-}).AddEntityFrameworkStores<QuizMingleDbContext>()
-    .AddTokenProvider<DataProtectorTokenProvider<User>>(TokenOptions.DefaultProvider);
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
