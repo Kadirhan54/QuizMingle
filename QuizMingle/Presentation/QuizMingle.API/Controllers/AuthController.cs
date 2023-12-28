@@ -11,7 +11,6 @@ namespace QuizMingle.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
