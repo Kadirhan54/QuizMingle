@@ -83,11 +83,24 @@ namespace QuizMingle.API.Controllers
             };
 
 
-            selectedQuiz.Questions.Add(question);
+            selectedQuiz.Questions.Add(question); //secili quize soru eklemek
             _context.Questions.Add(question);
             await _context.SaveChangesAsync();
 
             return Ok(new { Message = "Soru başarıyla eklendi", QuestionId = question.Id });
+        }
+        [HttpGet]
+        [Route("GetUserId")]
+        public IActionResult GetUserId()
+        {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized("Kullanıcı ID'si bulunamadı.");
+            }
+
+            return Ok(new { Name = userName, Id = userId });
         }
 
     }
