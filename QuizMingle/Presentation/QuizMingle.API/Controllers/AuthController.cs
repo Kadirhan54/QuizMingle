@@ -31,9 +31,12 @@ namespace QuizMingle.API.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            Guid userId = Guid.NewGuid();
             var result = await _userManager.CreateAsync(
                 new User 
                 {
+                    Id= userId,
                     UserName = request.Username,
                     Email = request.Email,
                     FirstName = request.FirstName,
