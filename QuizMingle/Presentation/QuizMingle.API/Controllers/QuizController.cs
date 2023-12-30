@@ -14,7 +14,7 @@ namespace QuizMingle.API.Controllers
     [ApiController]
     public class QuizController : ControllerBase
     {
-      
+
         private readonly QuizMingleDbContext _context;
 
         public QuizController(QuizMingleDbContext context)
@@ -85,7 +85,7 @@ namespace QuizMingle.API.Controllers
             _context.Questions.Add(question);
             await _context.SaveChangesAsync();
 
-            return Ok(new { Message = "Soru başarıyla eklendi", QuestionId = question.Id , Quiz =question.QuizId });
+            return Ok(new { Message = "Soru başarıyla eklendi", QuestionId = question.Id, Quiz = question.QuizId });
         }
         [HttpGet]
         [Route("GetUserId")]
@@ -165,8 +165,12 @@ namespace QuizMingle.API.Controllers
         [Route("AddUserQuiz")]
         public async Task<IActionResult> AddUserQuiz([FromBody] UserQuizRequest userQuizRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var userQuizExists = _context.UserQuizzes.Any(uq => uq.UserId == userQuizRequest.UserId && uq.QuizId == userQuizRequest.QuizId);
-            
+
             if (!userQuizExists)
             {
                 var userQuiz = new UserQuiz
@@ -198,6 +202,51 @@ namespace QuizMingle.API.Controllers
             return BadRequest("Belirtilen kullanıcı ve quiz için kayıt zaten mevcut.");
         }
 
+       
+
+
+        [HttpPost]
+        [Route("AddUserQuizScore")]
+        public async Task<IActionResult> AddUserQuizScore([FromBody] ScoreRequest scoreRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!Guid.TryParse(userIdString, out Guid userId))
+            {
+                return BadRequest("Geçersiz kullanıcı ID'si.");
+            }
+
+            var userQuizAnswers = _context.UserQuizAnswers
+                .Where(uqa => uqa.UserId == userId && uqa.QuizId == scoreRequest.QuizId)
+                .Include(uqa => uqa.Question)
+                .ToList();
+
+            if (!userQuizAnswers.Any())
+            {
+                return BadRequest("Bu quiz için cevaplar bulunamadı.");
+            }
+
+            int score = userQuizAnswers.Count(uqa => uqa.GivenAnswer == uqa.Question.CorrectAnswer);
+            var totalQuestions = await _context.Questions.CountAsync(q => q.QuizId == scoreRequest.QuizId);
+
+            var userQuizScore = new Score
+            {
+                UserId = userId,
+                QuizId = scoreRequest.QuizId,
+                ScoreValue = score,
+                DateTaken = DateTimeOffset.UtcNow,
+                CreatedByUserId = "halaymaster"
+            };
+
+            _context.Scores.Add(userQuizScore);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Skor başarıyla eklendi", Score = score, TotalQuestions = totalQuestions });
+        }
 
     }
 }
