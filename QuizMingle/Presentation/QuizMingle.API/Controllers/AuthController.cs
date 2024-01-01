@@ -6,6 +6,7 @@ using QuizMingle.API.Models;
 using QuizMingle.API.Services;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
+using QuizMingle.Persistence.Service;
 
 namespace QuizMingle.API.Controllers
 {
@@ -15,8 +16,8 @@ namespace QuizMingle.API.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly QuizMingleDbContext _context;
-        private readonly TokenService _tokenService;
-        public AuthController(UserManager<User> userManager, QuizMingleDbContext quizMingleDbContext, TokenService tokenService )
+        private readonly ITokenService _tokenService;
+        public AuthController(UserManager<User> userManager, QuizMingleDbContext quizMingleDbContext, ITokenService tokenService )
         {
             _userManager = userManager;
             _context = quizMingleDbContext;
@@ -31,9 +32,12 @@ namespace QuizMingle.API.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            Guid userId = Guid.NewGuid();
             var result = await _userManager.CreateAsync(
                 new User 
                 {
+                    Id= userId,
                     UserName = request.Username,
                     Email = request.Email,
                     FirstName = request.FirstName,

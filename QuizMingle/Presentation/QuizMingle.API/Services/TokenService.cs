@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using QuizMingle.Domain.Identity;
+using QuizMingle.Persistence.Service;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace QuizMingle.API.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private const int ExpirationMinutes = 30;
         public string CreateToken(User user)
@@ -40,7 +41,7 @@ namespace QuizMingle.API.Services
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, "TokenForTheApiWithAuth"),
+                    new Claim(JwtRegisteredClaimNames.Sub,  user.Id.ToString()), //"TokenForTheApiWithAuth" sildim
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)),
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), //

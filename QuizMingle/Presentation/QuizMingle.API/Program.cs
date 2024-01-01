@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using QuizMingle.API.Services;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
+using QuizMingle.Persistence.Service;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 string connectionString = builder.Configuration.GetSection("Team3PostgreSQLDB").Value;
 builder.Services.AddDbContext<QuizMingleDbContext>(options =>
