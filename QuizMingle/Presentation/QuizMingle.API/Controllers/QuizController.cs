@@ -134,7 +134,7 @@ namespace QuizMingle.API.Controllers
             }
 
             // UserQuizExists kontrolü
-            var userQuizExists = _context.UserQuizzes.Any(uq => uq.UserId == userId && uq.QuizId == answerRequest.QuizId);
+            var userQuizExists = _context.UserQuizzes.Any(x => x.UserId == userId && x.QuizId == answerRequest.QuizId);
             if (!userQuizExists)
             {
                 return BadRequest("Belirtilen kullanıcı quiz için kayıt bulunamadı (önce AddUserQuiz adımı).");
@@ -169,7 +169,7 @@ namespace QuizMingle.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var userQuizExists = _context.UserQuizzes.Any(uq => uq.UserId == userQuizRequest.UserId && uq.QuizId == userQuizRequest.QuizId);
+            var userQuizExists = _context.UserQuizzes.Any(x => x.UserId == userQuizRequest.UserId && x.QuizId == userQuizRequest.QuizId);
 
             if (!userQuizExists)
             {
@@ -221,8 +221,8 @@ namespace QuizMingle.API.Controllers
             }
 
             var userQuizAnswers = _context.UserQuizAnswers
-                .Where(uqa => uqa.UserId == userId && uqa.QuizId == scoreRequest.QuizId)
-                .Include(uqa => uqa.Question)
+                .Where(x => x.UserId == userId && x.QuizId == scoreRequest.QuizId)
+                .Include(x => x.Question)
                 .ToList();
 
             if (!userQuizAnswers.Any())
@@ -230,8 +230,8 @@ namespace QuizMingle.API.Controllers
                 return BadRequest("Bu quiz için cevaplar bulunamadı.");
             }
 
-            int score = userQuizAnswers.Count(uqa => uqa.GivenAnswer == uqa.Question.CorrectAnswer);
-            var totalQuestions = await _context.Questions.CountAsync(q => q.QuizId == scoreRequest.QuizId);
+            int score = userQuizAnswers.Count(x => x.GivenAnswer == x.Question.CorrectAnswer);
+            var totalQuestions = await _context.Questions.CountAsync(x => x.QuizId == scoreRequest.QuizId);
 
             var userQuizScore = new Score
             {
