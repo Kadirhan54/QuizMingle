@@ -87,6 +87,7 @@ namespace QuizMingle.API.Controllers
 
             return Ok(new { Message = "Soru başarıyla eklendi", QuestionId = question.Id, Quiz = question.QuizId });
         }
+
         [HttpGet]
         [Route("GetUserId")]
         public IActionResult GetUserId()

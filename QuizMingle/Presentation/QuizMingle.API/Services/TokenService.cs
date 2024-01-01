@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using QuizMingle.Domain.Identity;
+using QuizMingle.Persistence.Service;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace QuizMingle.API.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private const int ExpirationMinutes = 30;
         public string CreateToken(User user)
