@@ -252,13 +252,11 @@ namespace QuizMingle.API.Controllers
         }
 
         // GET: api/Quiz/GetQuiz/id
-
         [HttpGet]
         [Route("GetQuiz/{id}")]
             public async Task<ActionResult<Quiz>> GetQuiz(Guid id)
         {
             var quiz = await _context.Quizzes.FindAsync(id);
-
             if (quiz == null)
             {
                 return NotFound();
@@ -282,9 +280,31 @@ namespace QuizMingle.API.Controllers
 
             return quizResponseModels;
         }
+        [HttpPost]
+        [Route("UpdateQuiz")]
+        public async Task<IActionResult> UpdateQuiz([FromBody] QuizUpdateRequest quizRequest)
+        {
+            // Model doğrulaması
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-       
+            var quiz = await _context.Quizzes.FindAsync(quizRequest.QuizId);
+            if (quiz == null)
+            {
+                return NotFound("Quiz bulunamadı.");
+            }
 
+            quiz.StartTime = quizRequest.StartTime;
+            quiz.TimeLimit = quizRequest.TimeLimit;
+
+            _context.Quizzes.Update(quiz);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Quiz başarıyla güncellendi", QuizId = quiz.Id });
+        }
 
     }
+
 }
