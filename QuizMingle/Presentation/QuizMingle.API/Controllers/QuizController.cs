@@ -251,5 +251,40 @@ namespace QuizMingle.API.Controllers
             return Ok(new { Message = "Skor başarıyla eklendi", Score = score, TotalQuestions = totalQuestions });
         }
 
+        // GET: api/Quiz/GetQuiz/id
+
+        [HttpGet]
+        [Route("GetQuiz/{id}")]
+            public async Task<ActionResult<Quiz>> GetQuiz(Guid id)
+        {
+            var quiz = await _context.Quizzes.FindAsync(id);
+
+            if (quiz == null)
+            {
+                return NotFound();
+            }
+
+            return quiz;
+        }
+
+        // GET: api/Quiz/GetQuizzes
+        [HttpGet]
+        [Route("GetQuizzes")]
+        public async Task<ActionResult<IEnumerable<QuizResponseModel>>> GetQuizzes()
+        {
+            var quizzes = await _context.Quizzes.ToListAsync();
+            var quizResponseModels = quizzes.Select(q => new QuizResponseModel
+            {
+                TimeLimit = q.TimeLimit,
+                StartTime = q.StartTime,
+                Id = q.Id
+            }).ToList();
+
+            return quizResponseModels;
+        }
+
+       
+
+
     }
 }
