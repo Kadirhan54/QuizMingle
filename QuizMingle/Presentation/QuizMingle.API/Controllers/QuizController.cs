@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizMingle.API.Models;
+using QuizMingle.API.Validators;
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
@@ -27,10 +30,20 @@ namespace QuizMingle.API.Controllers
         [Route("CreateQuiz")]
         public async Task<IActionResult> CreateQuiz([FromBody] QuizCreateRequest quizRequest)
         {
-            // Model doğrulaması
-            if (!ModelState.IsValid)
+
+            QuizCreateRequestValidator validator = new QuizCreateRequestValidator();
+
+            ValidationResult results = validator.Validate(quizRequest);
+
+            if (!results.IsValid)
             {
-                return BadRequest(ModelState);
+                //foreach (var failure in results.Errors)
+                //{
+                //    Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
+                //}
+
+                return BadRequest(results);
+
             }
 
             // Quiz nesnesi oluşturma
@@ -53,10 +66,20 @@ namespace QuizMingle.API.Controllers
         [Route("AddQuestion")]
         public async Task<IActionResult> AddQuestion([FromBody] QuestionCreateRequest questionRequest)
         {
-            // Model doğrulaması
-            if (!ModelState.IsValid)
+
+            QuestionCreateReqauestValidator validator = new QuestionCreateReqauestValidator();
+
+            ValidationResult results = validator.Validate(questionRequest);
+
+            if (!results.IsValid)
             {
-                return BadRequest(ModelState);
+                //foreach (var failure in results.Errors)
+                //{
+                //    Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
+                //}
+
+                return BadRequest(results);
+
             }
 
             var selectedQuiz = _context.Quizzes.Include(q => q.Questions)
