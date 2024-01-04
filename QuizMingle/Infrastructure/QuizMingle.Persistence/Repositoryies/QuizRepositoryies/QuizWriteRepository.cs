@@ -5,7 +5,7 @@ using QuizMingle.Persistence.Context;
 
 namespace QuizMingle.Application.Repositories.QuizRepositories
 {
-    public class QuizWriteRepository : WriteRepository<Quiz, Guid>, IQuiznWriteRepository
+    public class QuizWriteRepository : WriteRepository<Quiz, Guid>, IQuizWriteRepository
     {
         public QuizWriteRepository(QuizMingleDbContext context) : base(context)
         {

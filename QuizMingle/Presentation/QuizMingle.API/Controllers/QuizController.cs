@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizMingle.API.Models;
+using QuizMingle.Application.Features.Queries;
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
@@ -18,12 +18,13 @@ namespace QuizMingle.API.Controllers
     {
 
         private readonly QuizMingleDbContext _context;
+        readonly IMediator _mediator;
 
-        public QuizController(QuizMingleDbContext context)
+        public QuizController(QuizMingleDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
-
 
         [HttpPost]
         [Route("CreateQuiz")]
@@ -104,8 +105,6 @@ namespace QuizMingle.API.Controllers
             return Ok(new { Name = userName, Id = userId });
         }
 
-
-
         [HttpPost]
         [Route("CreateAnswer")]
         public async Task<IActionResult> CreateAnswer([FromBody] AnswerRequest answerRequest)
@@ -161,9 +160,6 @@ namespace QuizMingle.API.Controllers
         }
 
 
-
-
-
         [HttpPost]
         [Route("AddUserQuiz")]
         public async Task<IActionResult> AddUserQuiz([FromBody] UserQuizRequest userQuizRequest)
@@ -203,9 +199,7 @@ namespace QuizMingle.API.Controllers
             }
 
             return BadRequest("Belirtilen kullanıcı ve quiz için kayıt zaten mevcut.");
-        }
-
-       
+        }     
 
 
         [HttpPost]
@@ -254,7 +248,7 @@ namespace QuizMingle.API.Controllers
         // GET: api/Quiz/GetQuiz/id
         [HttpGet]
         [Route("GetQuiz/{id}")]
-            public async Task<ActionResult<Quiz>> GetQuiz(Guid id)
+        public async Task<ActionResult<Quiz>> GetQuiz(Guid id)
         {
             var quiz = await _context.Quizzes.FindAsync(id);
             if (quiz == null)
@@ -280,6 +274,7 @@ namespace QuizMingle.API.Controllers
 
             return quizResponseModels;
         }
+
         [HttpPost]
         [Route("UpdateQuiz")]
         public async Task<IActionResult> UpdateQuiz([FromBody] QuizUpdateRequest quizRequest)
@@ -303,6 +298,16 @@ namespace QuizMingle.API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { Message = "Quiz başarıyla güncellendi", QuizId = quiz.Id });
+        }
+
+        //CQRS ile GetAllQuiz sorgusu
+        [HttpGet]
+        [Route("GetAllQuiz")]
+        public async Task<IActionResult> GetAllQuiz([FromQuery] GetAllQuizQueryRequest getAllQuizQueryRequest) {
+
+        GetAllQuizQueryResponse response = await _mediator.Send(getAllQuizQueryRequest);
+        return Ok(response);
+
         }
 
     }
