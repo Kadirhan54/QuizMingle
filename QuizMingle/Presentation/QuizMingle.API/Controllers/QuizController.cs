@@ -1,9 +1,21 @@
-﻿using Microsoft.AspNetCore.Http;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using QuizMingle.API.Models;
+using QuizMingle.Application.Features.Queries;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizMingle.API.Models;
+
 using QuizMingle.API.Models.Quiz;
+
+using QuizMingle.API.Validators;
+
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
@@ -13,25 +25,37 @@ namespace QuizMingle.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class QuizController : ControllerBase
     {
 
         private readonly QuizMingleDbContext _context;
+        readonly IMediator _mediator;
 
-        public QuizController(QuizMingleDbContext context)
+        public QuizController(QuizMingleDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
-
 
         [HttpPost]
         [Route("CreateQuiz")]
         public async Task<IActionResult> CreateQuiz([FromBody] QuizCreateRequest quizRequest)
         {
-            // Model doğrulaması
-            if (!ModelState.IsValid)
+
+            QuizCreateRequestValidator validator = new QuizCreateRequestValidator();
+
+            ValidationResult results = validator.Validate(quizRequest);
+
+            if (!results.IsValid)
             {
-                return BadRequest(ModelState);
+                //foreach (var failure in results.Errors)
+                //{
+                //    Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
+                //}
+
+                return BadRequest(results);
+
             }
 
             // Quiz nesnesi oluşturma
@@ -54,10 +78,20 @@ namespace QuizMingle.API.Controllers
         [Route("AddQuestion")]
         public async Task<IActionResult> AddQuestion([FromBody] QuestionCreateRequest questionRequest)
         {
-            // Model doğrulaması
-            if (!ModelState.IsValid)
+
+            QuestionCreateReqauestValidator validator = new QuestionCreateReqauestValidator();
+
+            ValidationResult results = validator.Validate(questionRequest);
+
+            if (!results.IsValid)
             {
-                return BadRequest(ModelState);
+                //foreach (var failure in results.Errors)
+                //{
+                //    Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
+                //}
+
+                return BadRequest(results);
+
             }
 
             var selectedQuiz = _context.Quizzes.Include(q => q.Questions)
@@ -102,6 +136,7 @@ namespace QuizMingle.API.Controllers
 
             return Ok(new { Name = userName, Id = userId });
         }
+
 
 
         [HttpPost]
@@ -159,7 +194,6 @@ namespace QuizMingle.API.Controllers
         }
 
 
-
         [HttpPost]
         [Route("AddUserQuiz")]
         public async Task<IActionResult> AddUserQuiz([FromBody] UserQuizRequest userQuizRequest)
@@ -199,9 +233,7 @@ namespace QuizMingle.API.Controllers
             }
 
             return BadRequest("Belirtilen kullanıcı ve quiz için kayıt zaten mevcut.");
-        }
-
-       
+        }     
 
 
         [HttpPost]
@@ -248,6 +280,7 @@ namespace QuizMingle.API.Controllers
         }
 
 
+
         [HttpPost]
         [Route("GenerateRandomQuiz")]
         public async Task<IActionResult> GenerateRandomQuiz([FromBody] RandomQuizRequest randomQuizRequest)
@@ -288,10 +321,48 @@ namespace QuizMingle.API.Controllers
         [Route("GetBestScoreInQuiz")]
         public async Task<IActionResult> GetBestScoreInQuiz([FromBody] BestScoreRequest bestScoreRequest)
         {
+
+        // GET: api/Quiz/GetQuiz/id
+        [HttpGet]
+        [Route("GetQuiz/{id}")]
+        public async Task<ActionResult<Quiz>> GetQuiz(Guid id)
+        {
+            var quiz = await _context.Quizzes.FindAsync(id);
+            if (quiz == null)
+            {
+                return NotFound();
+            }
+
+            return quiz;
+        }
+
+        // GET: api/Quiz/GetQuizzes
+        [HttpGet]
+        [Route("GetQuizzes")]
+        public async Task<ActionResult<IEnumerable<QuizResponseModel>>> GetQuizzes()
+        {
+            var quizzes = await _context.Quizzes.ToListAsync();
+            var quizResponseModels = quizzes.Select(q => new QuizResponseModel
+            {
+                TimeLimit = q.TimeLimit,
+                StartTime = q.StartTime,
+                Id = q.Id
+            }).ToList();
+
+            return quizResponseModels;
+        }
+
+        [HttpPost]
+        [Route("UpdateQuiz")]
+        public async Task<IActionResult> UpdateQuiz([FromBody] QuizUpdateRequest quizRequest)
+        {
+            // Model doğrulaması
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
 
             try
             {
@@ -312,5 +383,32 @@ namespace QuizMingle.API.Controllers
         }
 
 
+            var quiz = await _context.Quizzes.FindAsync(quizRequest.QuizId);
+            if (quiz == null)
+            {
+                return NotFound("Quiz bulunamadı.");
+            }
+
+            quiz.StartTime = quizRequest.StartTime;
+            quiz.TimeLimit = quizRequest.TimeLimit;
+
+            _context.Quizzes.Update(quiz);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Quiz başarıyla güncellendi", QuizId = quiz.Id });
+        }
+
+        //CQRS ile GetAllQuiz sorgusu
+        [HttpGet]
+        [Route("GetAllQuiz")]
+        public async Task<IActionResult> GetAllQuiz([FromQuery] GetAllQuizQueryRequest getAllQuizQueryRequest) {
+
+        GetAllQuizQueryResponse response = await _mediator.Send(getAllQuizQueryRequest);
+        return Ok(response);
+
+        }
+
+
     }
+
 }

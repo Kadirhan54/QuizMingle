@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\QuizMingle.Application\QuizMingle.Application.csproj" />
     <ProjectReference Include="..\..\Core\QuizMingle.Domain\QuizMingle.Domain.csproj" />
   </ItemGroup>
 
