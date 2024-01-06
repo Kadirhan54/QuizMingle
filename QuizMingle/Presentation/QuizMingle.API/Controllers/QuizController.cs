@@ -202,18 +202,18 @@ namespace QuizMingle.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var userQuizExists = _context.UserQuizzes.Any(x => x.UserId == userQuizRequest.UserId && x.QuizId == userQuizRequest.QuizId);
+            var userQuizExists = _context.UserQuizzes.Any(x => x.UserId.ToString() == userQuizRequest.UserId && x.QuizId.ToString() == userQuizRequest.QuizId);
 
             if (!userQuizExists)
             {
                 var userQuiz = new UserQuiz
                 {
-                    UserId = userQuizRequest.UserId,
-                    QuizId = userQuizRequest.QuizId,
+                    UserId = Guid.Parse(userQuizRequest.UserId),
+                    QuizId = Guid.Parse(userQuizRequest.QuizId),
                     CreatedByUserId = "halaymaster"
                 };
 
-                User selectedUser = _context.Users.FirstOrDefault(x => x.Id == userQuizRequest.UserId);
+                User? selectedUser = _context.Users.FirstOrDefault(x => x.Id.ToString() == userQuizRequest.UserId);
                 if (selectedUser == null)
                 {
                     return NotFound("Kullanıcı bulunamadı.");
@@ -303,7 +303,7 @@ namespace QuizMingle.API.Controllers
             };
 
             var addUserQuizResult = await AddUserQuiz(new UserQuizRequest(
-                randomQuizRequest.UserId,
+                randomQuizRequest.UserId.ToString(),
                 new Guid()
             ));
 
@@ -321,7 +321,8 @@ namespace QuizMingle.API.Controllers
         [Route("GetBestScoreInQuiz")]
         public async Task<IActionResult> GetBestScoreInQuiz([FromBody] BestScoreRequest bestScoreRequest)
         {
-
+            return Ok();
+        }    
         // GET: api/Quiz/GetQuiz/id
         [HttpGet]
         [Route("GetQuiz/{id}")]
@@ -354,7 +355,7 @@ namespace QuizMingle.API.Controllers
 
         [HttpPost]
         [Route("UpdateQuiz")]
-        public async Task<IActionResult> UpdateQuiz([FromBody] QuizUpdateRequest quizRequest)
+        public async Task<IActionResult> UpdateQuiz([FromBody] BestScoreRequest quizRequest)
         {
             // Model doğrulaması
 
@@ -366,22 +367,18 @@ namespace QuizMingle.API.Controllers
 
             try
             {
-                Guid quizId = Guid.Parse(bestScoreRequest.QuizId);
+                Guid quizId = Guid.Parse(quizRequest.QuizId);
 
                 var bestScores = _context.Scores
                     .Where(score => score.QuizId == quizId)
                     .OrderByDescending(score => score.ScoreValue)
-                    .Take(bestScoreRequest.ScoreRequestCount) // Assuming you want to get the top 10 scores
+                    .Take(quizRequest.ScoreRequestCount) // Assuming you want to get the top 10 scores
                     .ToList();
-
-                return Ok(bestScores);
             }
             catch (FormatException)
             {
                 return BadRequest("Invalid QuizId format.");
             }
-        }
-
 
             var quiz = await _context.Quizzes.FindAsync(quizRequest.QuizId);
             if (quiz == null)
