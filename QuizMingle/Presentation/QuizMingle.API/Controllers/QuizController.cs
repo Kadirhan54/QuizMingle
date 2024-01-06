@@ -20,6 +20,8 @@ using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
 using System.Security.Claims;
+using Microsoft.Extensions.Caching.Memory;
+using System.Threading;
 
 namespace QuizMingle.API.Controllers
 {
@@ -31,11 +33,19 @@ namespace QuizMingle.API.Controllers
 
         private readonly QuizMingleDbContext _context;
         readonly IMediator _mediator;
-
-        public QuizController(QuizMingleDbContext context, IMediator mediator)
+        private readonly IMemoryCache _memoryCache;
+        private readonly MemoryCacheEntryOptions _cacheEntryOptions;
+        private const string CacheKey = "quizKey";
+        public QuizController(QuizMingleDbContext context, IMediator mediator,IMemoryCache memoryCache)
         {
             _context = context;
             _mediator = mediator;
+            _memoryCache = memoryCache;
+            _cacheEntryOptions = new MemoryCacheEntryOptions()
+            {
+                AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(30),
+                Priority = CacheItemPriority.High,
+            };
         }
 
         [HttpPost]
@@ -340,17 +350,15 @@ namespace QuizMingle.API.Controllers
         // GET: api/Quiz/GetQuizzes
         [HttpGet]
         [Route("GetQuizzes")]
-        public async Task<ActionResult<IEnumerable<QuizResponseModel>>> GetQuizzes()
+        public async Task<ActionResult<IEnumerable<QuizResponseModel>>> GetQuizzes(CancellationToken cancellationToken)
         {
-            var quizzes = await _context.Quizzes.ToListAsync();
-            var quizResponseModels = quizzes.Select(q => new QuizResponseModel
-            {
-                TimeLimit = q.TimeLimit,
-                StartTime = q.StartTime,
-                Id = q.Id
-            }).ToList();
+            if (_memoryCache.TryGetValue(CacheKey, out var quizzes)) { return Ok(quizzes); }
 
-            return quizResponseModels;
+            quizzes = await _context.Quizzes.AsNoTracking().ToListAsync(cancellationToken);
+
+            _memoryCache.Set(CacheKey, quizzes, _cacheEntryOptions);
+
+            return Ok(quizzes);
         }
 
         [HttpPost]
