@@ -18,15 +18,27 @@
 
 QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir platformdur. Kullanıcılar, çeşitli konularda interaktif quizler oluşturabilir, paylaşabilir ve katılımcılarını bilgi seviyelerini test edebilirler.
 
-## Features
+## Projeye Eklediğiniz Özellikler Gereksinimler Odağında
 
-- ### The Repository Pattern
-    The Repository Pattern restricts access to the database and ensures that database operations are performed only within the framework of specified methods, thus enhancing database security.
-- ### Identity Mechanism
-    The Identity Mechanism is a user management system. The Identity Mechanism provides common fields, such as email and username, as well as methods for registering and logging in that are applicable to all users.
-- ### Fluent Validation
-    Fluent Validation is used to ensure that user input values are correct and valid. If the values are incorrect, a warning message is displayed to the user. Fluent Validation ensures that only correct and valid data is stored in the database.
+- Clean Architecture: Proje, bakım ve ölçeklenebilirlik için katmanlara (Sunum, Uygulama, Domain, Altyapı) ayrılmıştır. Her katman belirgin sorumluluklara sahiptir.
 
+- Identity Mechanism & JWT Token: Kullanıcı yönetimi için ASP.NET Core Identity ve güvenli, token tabanlı kimlik doğrulama için JWT token kullanılmıştır. Bu, kullanıcı kimlik doğrulaması ve token üretimi yapan AuthControllerda ve Token Serviceda görülebilir.
+
+- CQRS Pattern - MediatR: Komut Sorgu Sorumluluk Ayrımı (CQRS) deseni, MediatR kullanılarak uygulanmış ve komut ile sorguların ayrılması QuizController da sağlanmıştır.
+
+- Fluent Validation: Kullanıcı girişlerinin doğrulaması için Fluent Validation kütüphanesi QuizController kullanılmıştır.
+
+- Interception Mechanism: Dependency Injection mekanizması uygulanmıştır.
+
+- Entity Framework Core & Performance Optimization: Veritabanı işlemleri için Entity Framework Core kullanılmış ve performans optimizasyonları tracing mekanizması yapılmıştır.
+
+- Caching: Veritabanı yükünü azaltmak ve yanıt sürelerini iyileştirmek için önbellekleme stratejileri QuizController uygulanmıştır.
+
+- User Secrets: Geliştirme ortamında hassas verilerin yönetimi için User Secrets kullanılmıştır.
+
+- Helper Classes/Services in Infrastructure Layer: Ortak operasyonlar için altyapı katmanında yeniden kullanılabilir yardımcı sınıflar ve servisler geliştirilmiştir.
+
+- Singleton Design Pattern: Singleton deseni user uygulanmıştır.
 
 
 ## 📍 Projeye Eklenen Özellikler 📍
