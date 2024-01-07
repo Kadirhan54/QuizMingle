@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -93,18 +94,6 @@ namespace QuizMingle.API.Controllers
             });
         }
 
-        [HttpGet]
-        [Route("GetUserId")]
-        public IActionResult GetUserId()
-        {
-            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
-            {
-                return Unauthorized("Kullanıcı ID'si bulunamadı.");
-            }
-
-            return Ok(new { Name = userName, Id = userId });
-        }
+       
     }
 }
