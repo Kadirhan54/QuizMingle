@@ -9,7 +9,6 @@ namespace QuizMingle.API.Models.Quiz
         public string QuizId { get; set; }
 
         public int ScoreRequestCount { get; set; }
-        public DateTimeOffset StartTime {  get; set; }
-        public DateTimeOffset TimeLimit { get; set;}
-	}
+
+    }
 }

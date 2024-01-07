@@ -12,7 +12,7 @@ using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
 using System.Security.Claims;
 using Microsoft.Extensions.Caching.Memory;
-
+using QuizMingle.API.Models.Quiz;
 
 namespace QuizMingle.API.Controllers
 {
@@ -341,7 +341,34 @@ namespace QuizMingle.API.Controllers
 
         }
 
+      
 
+        [HttpPost]
+        [Route("GetBestScoreInQuiz")]
+        public async Task<IActionResult> GetBestScoreInQuiz([FromBody] BestScoreRequest bestScoreRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                Guid quizId = Guid.Parse(bestScoreRequest.QuizId);
+
+                var bestScores = _context.Scores
+                    .Where(score => score.QuizId == quizId)
+                    .OrderByDescending(score => score.ScoreValue)
+                    .Take(bestScoreRequest.ScoreRequestCount) // Assuming you want to get the top 10 scores
+                    .ToList();
+
+                return Ok(bestScores);
+            }
+            catch (FormatException)
+            {
+                return BadRequest("Invalid QuizId format.");
+            }
+        }
     }
 
 }
