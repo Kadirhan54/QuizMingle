@@ -47,8 +47,8 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 - #### [Seyyit Ahmet Kılıç](https://github.com/sahmett)
     Configurations, Database Design, Entities, QuizControllers, Identity Mechanism, JWT Token,
 
-- #### Nejla Küçük:
-
+- #### [Nejla Küçük](https://github.com/nkucukk):
+    User CRUD
 - #### Elif Yıldırım:
 
 - #### Furkan Mert Mısırlı:
@@ -61,7 +61,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 - Seyyit Ahmet Kılıç:
 
 - Nejla Küçük:
-
+    Bu süreçte herhangi bir zorluk yaşamadım.
 - Elif Yıldırım:
 
 - Furkan Mert Mısırlı:
