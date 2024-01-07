@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using QuizMingle.API.Models;
+using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
 using QuizMingle.Persistence.Service;
@@ -24,18 +27,41 @@ namespace QuizMingle.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserId")]
-        public IActionResult GetUserId()
+        [Route("GetUserById/{Id:Guid}")]
+        public async Task<IActionResult> GetUserById([FromRoute] Guid Id)
         {
-            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
+            var user = _context.Users
+                .Include(x => x.UserQuizzes)
+                .FirstOrDefault(u => u.Id == Id);
+
+            if (user == null)
             {
-                return Unauthorized("Kullanıcı ID'si bulunamadı.");
+                return NotFound("Kullanıcı ID'si bulunamadı.");
             }
 
-            return Ok(new { Name = userName, Id = userId });
+            var result = new UserResponseModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                CreatedByUserId = user.CreatedByUserId,
+                CreatedOn = user.CreatedOn,
+                ModifiedByUserId = user.ModifiedByUserId,
+                ModifiedOn = user.ModifiedOn,
+                UserQuizzes = user.UserQuizzes
+                    .Select(quiz => new UserQuiz
+                    {
+                        UserId = Id,
+                        QuizId = quiz.QuizId,
+                        CreatedByUserId = quiz.CreatedByUserId,
+                        CreatedOn = quiz.CreatedOn,
+
+                    })
+                    .ToList()
+            };
+
+            return Ok(result);
         }
+
 
         [HttpPost]
         [Route("DeleteUserById/{Id:Guid}")]
