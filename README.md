@@ -14,10 +14,20 @@
 
 🌐 Furkan Mert Mısırlı: [Linkedin](https://www.linkedin.com/in/furkan-mert-m%C4%B1s%C4%B1rl%C4%B1/)
 
-
 ## ✨ Uygulama Açıklaması ✨
 
 QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir platformdur. Kullanıcılar, çeşitli konularda interaktif quizler oluşturabilir, paylaşabilir ve katılımcılarını bilgi seviyelerini test edebilirler.
+
+## Features
+
+- ### The Repository Pattern
+    The Repository Pattern restricts access to the database and ensures that database operations are performed only within the framework of specified methods, thus enhancing database security.
+- ### Identity Mechanism
+    The Identity Mechanism is a user management system. The Identity Mechanism provides common fields, such as email and username, as well as methods for registering and logging in that are applicable to all users.
+- ### Fluent Validation
+    Fluent Validation is used to ensure that user input values are correct and valid. If the values are incorrect, a warning message is displayed to the user. Fluent Validation ensures that only correct and valid data is stored in the database.
+
+
 
 ## 📍 Projeye Eklenen Özellikler 📍
 
