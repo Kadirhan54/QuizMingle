@@ -54,7 +54,6 @@ namespace QuizMingle.API.Controllers
                         QuizId = quiz.QuizId,
                         CreatedByUserId = quiz.CreatedByUserId,
                         CreatedOn = quiz.CreatedOn,
-                        UserQuizAnswers = quiz.UserQuizAnswers
 
                     })
                     .ToList()
