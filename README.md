@@ -54,16 +54,16 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 
 ##  Görev Dağılımı 📌
 
-- Kadirhan Sağlam:
+- #### Kadirhan Sağlam:
 
-- ### [Seyyit Ahmet Kılıç](https://github.com/sahmett)
+- #### [Seyyit Ahmet Kılıç](https://github.com/sahmett)
     Configurations, Database Design, Entities, QuizControllers, Identity Mechanism, JWT Token,
 
-- Nejla Küçük:
+- #### Nejla Küçük:
 
-- Elif Yıldırım:
+- #### Elif Yıldırım:
 
-- Furkan Mert Mısırlı:
+- #### Furkan Mert Mısırlı:
 
 ##  Yaşanılan Problemler 📛
 - Kadirhan Sağlam:
