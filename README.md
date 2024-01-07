@@ -52,7 +52,7 @@ Kullanıcılar, platform üzerinden kolayca quiz oluşturabilirler. Quiz oluştu
 ### Quiz Detayları ve Sonuçlar:
 Her quizin ayrıntılı bir sayfası bulunmaktadır. Bu sayfada quizin açıklaması, katılımcı sayısı, ortalama başarı oranı gibi bilgiler görüntülenebilir. Ayrıca, her katılımcının verdiği cevaplar ve quiz sonuçları detaylı bir şekilde incelenebilir.
 
-##  Ek Özellikler (Detaylı) 📌
+##  Görev Dağılımı 📌
 
 Kadirhan Sağlam:
 
