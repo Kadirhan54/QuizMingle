@@ -10,6 +10,7 @@ Team3
 🌐 Nejla Küçük: [Linkedin](https://tr.linkedin.com/in/nkucuk)
 🌐 Elif Yıldırım: [Linkedin](https://tr.linkedin.com/in/elif-y%C4%B1ld%C4%B1r%C4%B1m-4a1373203)
 🌐 Furkan Mert Mısırlı: [Linkedin](https://www.linkedin.com/in/furkan-mert-m%C4%B1s%C4%B1rl%C4%B1/)
+
 ✨ Uygulama Açıklaması ✨
 
 QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir platformdur. Kullanıcılar, çeşitli konularda interaktif quizler oluşturabilir, paylaşabilir ve katılımcılarını bilgi seviyelerini test edebilirler.
