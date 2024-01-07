@@ -6,22 +6,13 @@ using QuizMingle.API.Models;
 using QuizMingle.Application.Features.Queries;
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QuizMingle.API.Models;
-
-using QuizMingle.API.Models.Quiz;
-
 using QuizMingle.API.Validators;
-
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
 using System.Security.Claims;
 using Microsoft.Extensions.Caching.Memory;
-using System.Threading;
+
 
 namespace QuizMingle.API.Controllers
 {
@@ -147,8 +138,6 @@ namespace QuizMingle.API.Controllers
             return Ok(new { Name = userName, Id = userId });
         }
 
-
-
         [HttpPost]
         [Route("CreateAnswer")]
         public async Task<IActionResult> CreateAnswer([FromBody] AnswerRequest answerRequest)
@@ -206,24 +195,24 @@ namespace QuizMingle.API.Controllers
 
         [HttpPost]
         [Route("AddUserQuiz")]
-        public async Task<IActionResult> AddUserQuiz([FromBody] UserQuizRequest userQuizRequest)
+        public async Task<IActionResult> AddUserQuiz([FromBody] UserQuizRequestModel userQuizRequest)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var userQuizExists = _context.UserQuizzes.Any(x => x.UserId.ToString() == userQuizRequest.UserId && x.QuizId.ToString() == userQuizRequest.QuizId);
+            var userQuizExists = _context.UserQuizzes.Any(x => x.UserId == userQuizRequest.UserId && x.QuizId == userQuizRequest.QuizId);
 
             if (!userQuizExists)
             {
                 var userQuiz = new UserQuiz
                 {
-                    UserId = Guid.Parse(userQuizRequest.UserId),
-                    QuizId = Guid.Parse(userQuizRequest.QuizId),
+                    UserId = userQuizRequest.UserId,
+                    QuizId = userQuizRequest.QuizId,
                     CreatedByUserId = "halaymaster"
                 };
 
-                User? selectedUser = _context.Users.FirstOrDefault(x => x.Id.ToString() == userQuizRequest.UserId);
+                User selectedUser = _context.Users.FirstOrDefault(x => x.Id == userQuizRequest.UserId);
                 if (selectedUser == null)
                 {
                     return NotFound("Kullanıcı bulunamadı.");
@@ -289,50 +278,6 @@ namespace QuizMingle.API.Controllers
             return Ok(new { Message = "Skor başarıyla eklendi", Score = score, TotalQuestions = totalQuestions });
         }
 
-
-
-        [HttpPost]
-        [Route("GenerateRandomQuiz")]
-        public async Task<IActionResult> GenerateRandomQuiz([FromBody] RandomQuizRequest randomQuizRequest)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var randomQuestions = _context.Questions
-                .Take(randomQuizRequest.questionCount)
-                .ToList();
-
-            int timeLimitInSeconds = randomQuizRequest.timeDuration;
-
-            var response = new RandomQuizResponse
-            {
-                Questions = randomQuestions,
-                TimeLimitInSeconds = timeLimitInSeconds
-            };
-
-            var addUserQuizResult = await AddUserQuiz(new UserQuizRequest(
-                randomQuizRequest.UserId.ToString(),
-                new Guid()
-            ));
-
-            if (addUserQuizResult is OkObjectResult)
-            {
-                return Ok(response);
-            }
-            else
-            {
-                return addUserQuizResult;
-            }
-        }
-
-        [HttpPost]
-        [Route("GetBestScoreInQuiz")]
-        public async Task<IActionResult> GetBestScoreInQuiz([FromBody] BestScoreRequest bestScoreRequest)
-        {
-            return Ok();
-        }    
         // GET: api/Quiz/GetQuiz/id
         [HttpGet]
         [Route("GetQuiz/{id}")]
@@ -363,29 +308,12 @@ namespace QuizMingle.API.Controllers
 
         [HttpPost]
         [Route("UpdateQuiz")]
-        public async Task<IActionResult> UpdateQuiz([FromBody] BestScoreRequest quizRequest)
+        public async Task<IActionResult> UpdateQuiz([FromBody] QuizUpdateRequest quizRequest)
         {
             // Model doğrulaması
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-
-            try
-            {
-                Guid quizId = Guid.Parse(quizRequest.QuizId);
-
-                var bestScores = _context.Scores
-                    .Where(score => score.QuizId == quizId)
-                    .OrderByDescending(score => score.ScoreValue)
-                    .Take(quizRequest.ScoreRequestCount) // Assuming you want to get the top 10 scores
-                    .ToList();
-            }
-            catch (FormatException)
-            {
-                return BadRequest("Invalid QuizId format.");
             }
 
             var quiz = await _context.Quizzes.FindAsync(quizRequest.QuizId);
