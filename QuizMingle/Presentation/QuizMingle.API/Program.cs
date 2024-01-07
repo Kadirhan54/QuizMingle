@@ -8,6 +8,9 @@ using StudyTimer.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddSingleton<IQuizCreateCounter1, QuizCreateCounter1>;
+
 // Add services to the container.
 builder.Services.AddControllers();
 
@@ -20,6 +23,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddWebServices();
+
 
 var app = builder.Build();
 

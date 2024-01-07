@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\QuizMingle.Domain\QuizMingle.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\QuizMingle.Persistence\QuizMingle.Persistence.csproj" />
   </ItemGroup>
 

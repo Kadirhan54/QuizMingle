@@ -62,6 +62,7 @@ namespace QuizMingle.API.Controllers
 
         [HttpPost]
         [Route("login")]
+        //Buraya kaç defa login yapıldığını tutan bir kod yaz.
         public async Task<ActionResult<AuthResponse>> Authenticate([FromBody] AuthRequest request)
         {
             if (!ModelState.IsValid)
