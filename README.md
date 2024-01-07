@@ -43,6 +43,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 ##  Görev Dağılımı 📌
 
 - #### Kadirhan Sağlam:
+    Tracing and Interception Mechanism, Caching, Fluent Validation
 
 - #### [Seyyit Ahmet Kılıç](https://github.com/sahmett)
     Configurations, Database Design, Entities, QuizControllers, Identity Mechanism, JWT Token,
