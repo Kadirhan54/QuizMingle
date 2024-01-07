@@ -42,7 +42,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 
 ##  Görev Dağılımı 📌
 
-- #### Kadirhan Sağlam:
+- #### [Kadirhan Sağlam](https://github.com/kadirhan54):
     Tracing and Interception Mechanism, Caching, Fluent Validation
 
 - #### [Seyyit Ahmet Kılıç](https://github.com/sahmett)
