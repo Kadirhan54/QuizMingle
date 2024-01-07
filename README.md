@@ -43,35 +43,36 @@ QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir plat
 
 ##  Projeye Eklenen Özellikler 📍
 
-### Kullanıcı Girişi ve Kaydı:
+- Kullanıcı Girişi ve Kaydı:
 Platforma giriş yapmak ve quizler oluşturmak için kullanıcıların bir hesap oluşturması gerekmektedir. Kullanıcılar, güvenli kullanıcı kimlik doğrulaması ile platforma erişebilir ve kişisel profillerini yönetebilirler.
 
-### Quiz Oluşturma:
-Kullanıcılar, platform üzerinden kolayca quiz oluşturabilirler. Quiz oluşturma formunda, soruların metinleri, seçenekleri ve doğru cevaplar belirlenebilir. Ayrıca, quizlere kategoriler ve zorluk seviyeleri ekleyerek daha özelleştirilmiş deneyimler oluşturabilirler.
+- Quiz Oluşturma:
+Kullanıcılar, platform üzerinden kolayca quiz oluşturabilirler. Quiz oluşturma formunda, seçenekleri ve doğru cevaplar belirlenebilir.
 
-### Quiz Detayları ve Sonuçlar:
-Her quizin ayrıntılı bir sayfası bulunmaktadır. Bu sayfada quizin açıklaması, katılımcı sayısı, ortalama başarı oranı gibi bilgiler görüntülenebilir. Ayrıca, her katılımcının verdiği cevaplar ve quiz sonuçları detaylı bir şekilde incelenebilir.
+- Quiz Detayları ve Sonuçlar:
+Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdiği cevaplar ve quiz sonuçları detaylı bir şekilde incelenebilir.
 
 ##  Görev Dağılımı 📌
 
-Kadirhan Sağlam:
+- Kadirhan Sağlam:
 
-Seyyit Ahmet Kılıç:
+- ### [Seyyit Ahmet Kılıç](https://github.com/sahmett)
+    Configurations, Database Design, Entities, QuizControllers, Identity Mechanism, JWT Token,
 
-Nejla Küçük:
+- Nejla Küçük:
 
-Elif Yıldırım:
+- Elif Yıldırım:
 
-Furkan Mert Mısırlı:
+- Furkan Mert Mısırlı:
 
 ##  Yaşanılan Problemler 📛
-Kadirhan Sağlam:
+- Kadirhan Sağlam:
 
-Seyyit Ahmet Kılıç:
+- Seyyit Ahmet Kılıç:
 
-Nejla Küçük:
+- Nejla Küçük:
 
-Elif Yıldırım:
+- Elif Yıldırım:
 
-Furkan Mert Mısırlı:
+- Furkan Mert Mısırlı:
 
