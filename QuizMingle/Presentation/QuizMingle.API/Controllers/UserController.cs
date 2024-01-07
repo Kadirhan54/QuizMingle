@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuizMingle.API.Models;
+using QuizMingle.API.Models.User;
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
@@ -53,7 +53,7 @@ namespace QuizMingle.API.Controllers
                         UserId = Id,
                         QuizId = quiz.QuizId,
                         CreatedByUserId = quiz.CreatedByUserId,
-                        CreatedOn = quiz.CreatedOn,
+                        CreatedOn = quiz.CreatedOn
 
                     })
                     .ToList()
@@ -78,6 +78,37 @@ namespace QuizMingle.API.Controllers
             await _context.SaveChangesAsync(); 
 
             return Ok($"ID: {Id} " + "\nKullanıcı başarıyla silindi.");
+        }
+
+
+        [HttpPost]
+        [Route("UpdateUser")]
+        public async Task<IActionResult> UpdateUser([FromBody] UserUpdateRequest request)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == request.Id);
+
+            if (user is null)
+            {
+                return NotFound("Kullanıcı bulunamadı.");
+            }
+
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.ModifiedByUserId = "halaymaster";
+            user.ModifiedOn = DateTime.UtcNow;
+            
+            await _context.SaveChangesAsync();
+
+            var updatedUser = new UpdateUserResponseModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ModifiedByUserId = user.ModifiedByUserId,
+                ModifiedOn = DateTime.UtcNow
+
+            };
+
+            return Ok(updatedUser);
         }
 
     }

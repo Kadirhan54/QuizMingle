@@ -1,15 +1,11 @@
 ﻿using QuizMingle.Domain.Entities;
 
-namespace QuizMingle.API.Models
+namespace QuizMingle.API.Models.User
 {
-    public class UserResponseModel
+    public class UpdateUserResponseModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public ICollection<UserQuiz> UserQuizzes { get; set; }
-
-        public string CreatedByUserId { get; set; }
-        public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset? ModifiedOn { get; set; }
         public string? ModifiedByUserId { get; set; }
     }
