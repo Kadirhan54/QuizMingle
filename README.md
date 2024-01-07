@@ -5,7 +5,7 @@ Team3
 
 🚨 Bize Ulaşın 🚨
 
-🌐 Kadirhan : [Linkedin](https://tr.linkedin.com/in/kadirhansaglam)
+🌐 Kadirhan Sağlam : [Linkedin](https://tr.linkedin.com/in/kadirhansaglam)
 🌐 Seyyit Ahmet Kılıç: [Linkedin](https://tr.linkedin.com/in/seyyit-ahmet-kilic)
 🌐 Nejla Küçük: [Linkedin](https://tr.linkedin.com/in/nkucuk)
 🌐 Elif Yıldırım: [Linkedin](https://tr.linkedin.com/in/elif-y%C4%B1ld%C4%B1r%C4%B1m-4a1373203)
@@ -28,7 +28,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Bu sayfada quizin açıklam
 
 📌 Ek Özellikler (Detaylı) 📌
 
-Kadirhan :
+Kadirhan Sağlam:
 
 Seyyit Ahmet Kılıç:
 
@@ -40,7 +40,7 @@ Furkan Mert Mısırlı:
 
 📛 Yaşanılan Problemler 📛
 
-Kadirhan :
+Kadirhan Sağlam:
 
 Seyyit Ahmet Kılıç:
 
