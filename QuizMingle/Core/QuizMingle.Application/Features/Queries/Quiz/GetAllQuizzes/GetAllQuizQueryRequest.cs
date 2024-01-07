@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizMingle.Application.Features.Queries
+namespace QuizMingle.Application.Features.Queries.Quiz.GetAllQuizzes
 {
     public class GetAllQuizQueryRequest : IRequest<GetAllQuizQueryResponse>
     {

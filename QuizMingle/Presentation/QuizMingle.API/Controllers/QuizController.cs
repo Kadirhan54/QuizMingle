@@ -3,19 +3,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizMingle.API.Models;
-using QuizMingle.Application.Features.Queries;
-﻿using FluentValidation;
+using FluentValidation;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QuizMingle.API.Models;
 using QuizMingle.API.Validators;
 using QuizMingle.Domain.Entities;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
 using System.Security.Claims;
+using QuizMingle.Application.Features.Queries.Quiz.GetAllQuizzes;
 
 namespace QuizMingle.API.Controllers
 {
@@ -338,6 +333,16 @@ namespace QuizMingle.API.Controllers
 
         }
 
+        //CQRS ile GetQuizById sorgusu
+        //[HttpGet]
+        //[Route("GetQuizById")]
+        //public async Task<IActionResult> GetQuizById([FromQuery] GetQuizByIdQueryRequest getQuizByIdQueryRequest)
+        //{
+
+        //    GetQuizByIdQueryResponse response = await _mediator.Send(getQuizByIdQueryRequest);
+        //    return Ok(response);
+
+        //}
     }
 
 }
