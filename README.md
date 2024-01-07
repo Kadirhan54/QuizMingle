@@ -52,7 +52,9 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 - #### Elif Yıldırım:
 
 - #### Furkan Mert Mısırlı:
-
+  GetBestScoreInQuiz & GenerateRandomQuiz endpoints
+  - Random quiz oluşturma özelliği ile sürekli değişen ve çeşitlenen içerikler sunarak kullanıcılara dinamik bir quiz
+  - En iyi skoru getirme endpointleri
 ##  Yaşanılan Problemler 📛
 - Kadirhan Sağlam:
 
@@ -63,6 +65,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 - Elif Yıldırım:
 
 - Furkan Mert Mısırlı:
+  İstenilen süreyi geçersiz veya istenmeyen değerlerle talep edilebilmesi sorununa rastlandı. Bu durumu engellemek ve güvenilirlik sağlamak için validasyon sistemine ek kontroller eklenmesi gerekti.
 
 ##  Bize Ulaşın 🚨
 
