@@ -1,8 +1,8 @@
 # QuizMingle 
 
-🌟 Team3 QuizMingle: Eğlenceli ve Etkileşimli Öğrenme Platformu 🌟
+ Team3 QuizMingle: Eğlenceli ve Etkileşimli Öğrenme Platformu 🌟
 
-## 🚨 Bize Ulaşın 🚨
+##  Bize Ulaşın 🚨
 
 🌐 Kadirhan Sağlam : [Linkedin](https://tr.linkedin.com/in/kadirhansaglam)
 
@@ -14,7 +14,7 @@
 
 🌐 Furkan Mert Mısırlı: [Linkedin](https://www.linkedin.com/in/furkan-mert-m%C4%B1s%C4%B1rl%C4%B1/)
 
-## ✨ Uygulama Açıklaması ✨
+##  Uygulama Açıklaması ✨
 
 QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir platformdur. Kullanıcılar, çeşitli konularda interaktif quizler oluşturabilir, paylaşabilir ve katılımcılarını bilgi seviyelerini test edebilirler.
 
@@ -41,7 +41,7 @@ QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir plat
 - Singleton Design Pattern: Singleton deseni user uygulanmıştır.
 
 
-## 📍 Projeye Eklenen Özellikler 📍
+##  Projeye Eklenen Özellikler 📍
 
 ### Kullanıcı Girişi ve Kaydı:
 Platforma giriş yapmak ve quizler oluşturmak için kullanıcıların bir hesap oluşturması gerekmektedir. Kullanıcılar, güvenli kullanıcı kimlik doğrulaması ile platforma erişebilir ve kişisel profillerini yönetebilirler.
@@ -52,7 +52,7 @@ Kullanıcılar, platform üzerinden kolayca quiz oluşturabilirler. Quiz oluştu
 ### Quiz Detayları ve Sonuçlar:
 Her quizin ayrıntılı bir sayfası bulunmaktadır. Bu sayfada quizin açıklaması, katılımcı sayısı, ortalama başarı oranı gibi bilgiler görüntülenebilir. Ayrıca, her katılımcının verdiği cevaplar ve quiz sonuçları detaylı bir şekilde incelenebilir.
 
-## 📌 Ek Özellikler (Detaylı) 📌
+##  Ek Özellikler (Detaylı) 📌
 
 Kadirhan Sağlam:
 
@@ -64,7 +64,7 @@ Elif Yıldırım:
 
 Furkan Mert Mısırlı:
 
-## 📛 Yaşanılan Problemler 📛
+##  Yaşanılan Problemler 📛
 Kadirhan Sağlam:
 
 Seyyit Ahmet Kılıç:
