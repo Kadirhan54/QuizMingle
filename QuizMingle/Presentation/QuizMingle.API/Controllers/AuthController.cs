@@ -7,6 +7,7 @@ using QuizMingle.API.Services;
 using QuizMingle.Domain.Identity;
 using QuizMingle.Persistence.Context;
 using QuizMingle.Persistence.Service;
+using System.Security.Claims;
 
 namespace QuizMingle.API.Controllers
 {
@@ -90,6 +91,20 @@ namespace QuizMingle.API.Controllers
                 Email = userInDb.Email,
                 Token = accessToken,
             });
+        }
+
+        [HttpGet]
+        [Route("GetUserId")]
+        public IActionResult GetUserId()
+        {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized("Kullanıcı ID'si bulunamadı.");
+            }
+
+            return Ok(new { Name = userName, Id = userId });
         }
     }
 }
