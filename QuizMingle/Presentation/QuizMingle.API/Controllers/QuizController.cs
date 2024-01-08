@@ -138,11 +138,11 @@ namespace QuizMingle.API.Controllers
                 return Unauthorized("Kullanıcı ID'si bulunamadı.");
             }
             //request sayısını sayıyor.
-            //var _quizCreateCounter = new QuizCreateCounter();
+            //var _quizCreateCounter = new QuizCreateCounter(); //bunu yorum satırına alınca çalıştı ıdk why.
             _quizCreateCounter.count +=1;
 
 			return Ok(new { Name = userName, Id = userId, Count= _quizCreateCounter.count });
-            //buraya kadarki kısım brquest sayısını saymak için.
+            //buraya kadarki kısım request sayısını saymak için.
         }
 
         [HttpPost]
@@ -317,20 +317,20 @@ namespace QuizMingle.API.Controllers
         //delete kısmını ekliyorum
         [HttpDelete("{id}")]
         //[Route("QuizDeleteRequest")] //bunu yorum satırına alınca çalıştı neden bilmiyorum :)
-        public IActionResult QuizDelete(int id)
+        public IActionResult QuizDelete(Guid id)
         {
             var quizToDelete = _context.Quizzes.Find(id);
 
         	if (quizToDelete == null)
         	{
-        		return NotFound(); // ıd bulunamazsa 404 vercek.
+        		return NotFound("geçersiz id girdin abla az dikkatli ol"); // ıd bulunamazsa 404 vercek.
         	}
 
         	_context.Quizzes.Remove(quizToDelete);
         	_context.SaveChanges();
 
         // Invalidate the cache since the data has been modified
-        	_memoryCache.Remove(CacheKey);
+        	_memoryCache.Remove(CacheKey); 
 
         	return NoContent();
         }
