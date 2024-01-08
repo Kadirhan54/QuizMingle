@@ -42,10 +42,11 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 
 ##  Görev Dağılımı 📌
 
-- #### Kadirhan Sağlam:
+- #### [Kadirhan Sağlam](https://github.com/kadirhan54):
+    Tracing and Interception Mechanism, Caching, Fluent Validation
 
 - #### [Seyyit Ahmet Kılıç](https://github.com/sahmett)
-    Configurations, Database Design, Entities, QuizControllers, Identity Mechanism, JWT Token,
+    Domain, Persistence,  Database Design, Configurations, Entities, AuthController, QuizControllers, Identity Mechanism, JWT Token
 
 - #### [Nejla Küçük](https://github.com/nkucukk):
     User CRUD
@@ -55,6 +56,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
   GetBestScoreInQuiz & GenerateRandomQuiz endpoints
   - Random quiz oluşturma özelliği ile sürekli değişen ve çeşitlenen içerikler sunarak kullanıcılara dinamik bir quiz
   - En iyi skoru getirme endpointleri
+    
 ##  Yaşanılan Problemler 📛
 - Kadirhan Sağlam:
 
@@ -62,6 +64,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 
 - Nejla Küçük:
     Bu süreçte herhangi bir zorluk yaşamadım.
+  
 - Elif Yıldırım:
 
 - Furkan Mert Mısırlı:
