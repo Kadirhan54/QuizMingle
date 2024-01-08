@@ -4,7 +4,7 @@ namespace QuizMingle.API.Services
 {
 	public class QuizCreateCounter
 	{
-		public int count { get; set; }
+		public int count { get; set; } = 0;
 
 		//private readonly QuizMingleDbContext _quizMingleDbContext;
 

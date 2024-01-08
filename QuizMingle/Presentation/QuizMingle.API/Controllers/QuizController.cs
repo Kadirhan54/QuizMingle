@@ -29,7 +29,7 @@ namespace QuizMingle.API.Controllers
         private readonly MemoryCacheEntryOptions _cacheEntryOptions;
         private readonly QuizCreateCounter _quizCreateCounter;
         private const string CacheKey = "quizKey";
-        public QuizController(QuizMingleDbContext context, IMediator mediator,IMemoryCache memoryCache, QuizCreateCounter quizCreateCounter)
+		public QuizController(QuizMingleDbContext context, IMediator mediator,IMemoryCache memoryCache, QuizCreateCounter quizCreateCounter)
         {
             _context = context;
             _mediator = mediator;
@@ -137,11 +137,12 @@ namespace QuizMingle.API.Controllers
             {
                 return Unauthorized("Kullanıcı ID'si bulunamadı.");
             }
-
-            var _quizCreateCounter = new QuizCreateCounter();
-            _quizCreateCounter.count ++;
+            //request sayısını sayıyor.
+            //var _quizCreateCounter = new QuizCreateCounter();
+            _quizCreateCounter.count +=1;
 
 			return Ok(new { Name = userName, Id = userId, Count= _quizCreateCounter.count });
+            //buraya kadarki kısım brquest sayısını saymak için.
         }
 
         [HttpPost]
@@ -312,12 +313,44 @@ namespace QuizMingle.API.Controllers
             return Ok(quizzes);
         }
 
-        //[HttpDelete("{id}")]
-        //[Route("QuizDeleteRequest")]
-        //public void Delete(int id)
-        //{
 
-        //}
+        //delete kısmını ekliyorum
+        [HttpDelete("{id}")]
+        //[Route("QuizDeleteRequest")] //bunu yorum satırına alınca çalıştı neden bilmiyorum :)
+        public IActionResult QuizDelete(int id)
+        {
+            var quizToDelete = _context.Quizzes.Find(id);
+
+        	if (quizToDelete == null)
+        	{
+        		return NotFound(); // ıd bulunamazsa 404 vercek.
+        	}
+
+        	_context.Quizzes.Remove(quizToDelete);
+        	_context.SaveChanges();
+
+        // Invalidate the cache since the data has been modified
+        	_memoryCache.Remove(CacheKey);
+
+        	return NoContent();
+        }
+        //buraya kadar delete kısmı
+
+
+        //farklı bir şekilde delete yapmaya çalışıyorum.
+
+  //      [Route("QuizDeleteRequest")]
+  //      public class QuizController : ControllerBase
+  //      {
+		//	[HttpDelete("{id}")]
+  //          public List<Quiz>
+		//}
+
+
+
+
+        //buraya kadar ikinci yöntem işte
+
 
         
 		[HttpPost]
