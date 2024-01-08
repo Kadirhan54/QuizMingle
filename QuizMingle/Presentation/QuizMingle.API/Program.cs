@@ -9,7 +9,8 @@ using StudyTimer.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddSingleton<IQuizCreateCounter1, QuizCreateCounter1>;
+builder.Services.AddSingleton<QuizCreateCounter>();
+
 
 // Add services to the container.
 builder.Services.AddControllers();

@@ -1,6 +1,6 @@
 ﻿namespace QuizMingle.API.Services
 {
-	public interface IQuizCreateCounter1
+	public interface IQuizCreateCounter
 	{
 		int getCount();
 

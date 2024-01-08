@@ -2,19 +2,32 @@
 
 namespace QuizMingle.API.Services
 {
-	public class QuizCreateCounter1 : IQuizCreateCounter1
+	public class QuizCreateCounter
 	{
-		private readonly QuizMingleDbContext _quizMingleDbContext;
+		public int count { get; set; }
 
-		public QuizCreateCounter1(QuizMingleDbContext quizMingleDbContext)
-        {
-			_quizMingleDbContext = quizMingleDbContext;
+		//private readonly QuizMingleDbContext _quizMingleDbContext;
 
-		}
 
-		public int getCount()
-		{
-			return _quizMingleDbContext.Quizzes.Count();
-		}
+		//public QuizCreateCounter(QuizMingleDbContext quizMingleDbContext)
+		//      {
+		//	_quizMingleDbContext = quizMingleDbContext;
+
+		//}
+
+		//public QuizCreateCounter()
+		//{
+		//}
+
+		//public int getCount()
+		//{
+		//	return count;
+		//}
+
+		//public int incrementcount()
+		//{
+		//	count++;
+		//	return count;
+		//}
 	}
 }

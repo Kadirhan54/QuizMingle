@@ -13,6 +13,7 @@ using QuizMingle.Persistence.Context;
 using System.Security.Claims;
 using Microsoft.Extensions.Caching.Memory;
 using QuizMingle.API.Models.Quiz;
+using QuizMingle.API.Services;
 
 namespace QuizMingle.API.Controllers
 {
@@ -26,12 +27,14 @@ namespace QuizMingle.API.Controllers
         readonly IMediator _mediator;
         private readonly IMemoryCache _memoryCache;
         private readonly MemoryCacheEntryOptions _cacheEntryOptions;
+        private readonly QuizCreateCounter _quizCreateCounter;
         private const string CacheKey = "quizKey";
-        public QuizController(QuizMingleDbContext context, IMediator mediator,IMemoryCache memoryCache)
+        public QuizController(QuizMingleDbContext context, IMediator mediator,IMemoryCache memoryCache, QuizCreateCounter quizCreateCounter)
         {
             _context = context;
             _mediator = mediator;
             _memoryCache = memoryCache;
+            _quizCreateCounter = quizCreateCounter;
             _cacheEntryOptions = new MemoryCacheEntryOptions()
             {
                 AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(30),
@@ -135,7 +138,10 @@ namespace QuizMingle.API.Controllers
                 return Unauthorized("Kullanıcı ID'si bulunamadı.");
             }
 
-            return Ok(new { Name = userName, Id = userId });
+            var _quizCreateCounter = new QuizCreateCounter();
+            _quizCreateCounter.count ++;
+
+			return Ok(new { Name = userName, Id = userId, Count= _quizCreateCounter.count });
         }
 
         [HttpPost]
@@ -306,7 +312,15 @@ namespace QuizMingle.API.Controllers
             return Ok(quizzes);
         }
 
-        [HttpPost]
+        //[HttpDelete("{id}")]
+        //[Route("QuizDeleteRequest")]
+        //public void Delete(int id)
+        //{
+
+        //}
+
+        
+		[HttpPost]
         [Route("UpdateQuiz")]
         public async Task<IActionResult> UpdateQuiz([FromBody] QuizUpdateRequest quizRequest)
         {
@@ -369,6 +383,9 @@ namespace QuizMingle.API.Controllers
                 return BadRequest("Invalid QuizId format.");
             }
         }
+
+
+
     }
 
 }
