@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using QuizMingle.Application.Features.Queries;
+using QuizMingle.Application.Features.Queries.GetAllQuiz;
 using QuizMingle.Application.Repositories;
 using QuizMingle.Application.Repositories.QuizRepositories;
 using System.Net.NetworkInformation;
