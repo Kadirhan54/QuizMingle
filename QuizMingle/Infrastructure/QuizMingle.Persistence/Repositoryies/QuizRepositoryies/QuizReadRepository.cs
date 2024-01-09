@@ -14,5 +14,10 @@ namespace QuizMingle.Application.Repositories.QuizRepositories
         {
             return await Table.ToListAsync(cancellationToken);
         }
+
+        public async Task<Quiz> GetQuizByIdAsync(CancellationToken cancellationToken, Guid Id)
+        {
+            return await Table.Where(q => q.Id == Id).FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }
