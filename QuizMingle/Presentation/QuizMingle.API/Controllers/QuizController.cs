@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizMingle.API.Models;
-using QuizMingle.Application.Features.Queries;
-﻿using FluentValidation;
+using FluentValidation;
 using FluentValidation.Results;
 using QuizMingle.API.Validators;
 using QuizMingle.Domain.Entities;
@@ -14,6 +13,8 @@ using System.Security.Claims;
 using Microsoft.Extensions.Caching.Memory;
 using QuizMingle.API.Models.Quiz;
 using QuizMingle.API.Services;
+using QuizMingle.Application.Features.Queries.GetAllQuiz;
+using QuizMingle.Application.Features.Queries.GetQuizById;
 
 namespace QuizMingle.API.Controllers
 {
@@ -284,19 +285,16 @@ namespace QuizMingle.API.Controllers
             return Ok(new { Message = "Skor başarıyla eklendi", Score = score, TotalQuestions = totalQuestions });
         }
 
-        // GET: api/Quiz/GetQuiz/id
+        // GET: api/Quiz/GetQuizById
         [HttpGet]
-        [Route("GetQuiz/{id}")]
-        public async Task<ActionResult<Quiz>> GetQuiz(Guid id)
+        [Route("GetQuizById")]
+        public async Task<ActionResult<GetQuizByIdResponse>> GetQuizById([FromQuery] Guid id)
         {
-            var quiz = await _context.Quizzes.FindAsync(id);
-            if (quiz == null)
-            {
-                return NotFound();
-            }
-
-            return quiz;
+            var request = new GetQuizByIdQuery { Id = id };
+            GetQuizByIdResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
+
 
         // GET: api/Quiz/GetQuizzes
         [HttpGet]
