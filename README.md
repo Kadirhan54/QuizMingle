@@ -6,7 +6,7 @@
 
 QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir platformdur. Kullanıcılar, çeşitli konularda interaktif quizler oluşturabilir, paylaşabilir ve katılımcılarını bilgi seviyelerini test edebilirler.
 
-## Projeye Eklediğiniz Özellikler Gereksinimler Odağında
+## Gereksinimler Doğrultusunda Projeye Eklediğiniz Özellikler 
 
 - Clean Architecture: Proje, bakım ve ölçeklenebilirlik için katmanlara (Sunum, Uygulama, Domain, Altyapı) ayrılmıştır. Her katman belirgin sorumluluklara sahiptir.
 
@@ -29,7 +29,7 @@ QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir plat
 - Singleton Design Pattern: Singleton deseni user uygulanmıştır.
 
 
-##  Projeye Eklenen Özellikler 📍
+##  Projeye Eklenen Özellikler Detay📍
 
 - Kullanıcı Girişi ve Kaydı:
 Platforma giriş yapmak ve quizler oluşturmak için kullanıcıların bir hesap oluşturması gerekmektedir. Kullanıcılar, güvenli kullanıcı kimlik doğrulaması ile platforma erişebilir ve kişisel profillerini yönetebilirler.
@@ -61,6 +61,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 - Kadirhan Sağlam:
 
 - Seyyit Ahmet Kılıç:
+   JWT token oluşturma , veri tabanı tasarımı aşamalarında zorlandım.
 
 - Nejla Küçük:
     Bu süreçte herhangi bir zorluk yaşamadım.
