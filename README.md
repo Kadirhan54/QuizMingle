@@ -1,32 +1,32 @@
 # QuizMingle 
 
- Team3 QuizMingle: Eğlenceli ve Etkileşimli Öğrenme Platformu 🌟
+ Team3 QuizMingle: Fun and Interactive Learning Platform 🌟
 
-##  Uygulama Açıklaması ✨
+## Application Description ✨
 
-QuizMingle projesi, eğlenceli ve etkileşimli öğrenme deneyimi sunan bir platformdur. Kullanıcılar, çeşitli konularda interaktif quizler oluşturabilir, paylaşabilir ve katılımcılarını bilgi seviyelerini test edebilirler.
+The QuizMingle project is a platform that offers a fun and interactive learning experience. Users can create and share interactive quizzes on various topics and test the knowledge level of their participants.
 
-## Gereksinimler Doğrultusunda Projeye Eklediğiniz Özellikler 
+## Features you add to the project in line with the requirements 
 
-- Clean Architecture: Proje, bakım ve ölçeklenebilirlik için katmanlara (Sunum, Uygulama, Domain, Altyapı) ayrılmıştır. Her katman belirgin sorumluluklara sahiptir.
+- Clean Architecture: The project is divided into layers (Presentation, Application, Domain, Infrastructure) for maintenance and scalability. Each layer has clear responsibilities.
 
-- Identity Mechanism & JWT Token: Kullanıcı yönetimi için ASP.NET Core Identity ve güvenli, token tabanlı kimlik doğrulama için JWT token kullanılmıştır. Bu, kullanıcı kimlik doğrulaması ve token üretimi yapan AuthControllerda ve Token Serviceda görülebilir.
+- Identity Mechanism & JWT Token: ASP.NET Core Identity is used for user management and JWT token for secure, token-based authentication. This can be seen in the AuthController and Token Service, which perform user authentication and token generation.
 
-- CQRS Pattern - MediatR: Komut Sorgu Sorumluluk Ayrımı (CQRS) deseni, MediatR kullanılarak uygulanmış ve komut ile sorguların ayrılması QuizController da sağlanmıştır.
+- CQRS Pattern - MediatR: The Command Query Responsibility Separation (CQRS) pattern is implemented using MediatR and the separation of commands and queries is provided in the QuizController.
 
-- Fluent Validation: Kullanıcı girişlerinin doğrulaması için Fluent Validation kütüphanesi QuizController kullanılmıştır.
+- Fluent Validation: Fluent Validation library was used in QuizController to validate user input.
 
-- Interception Mechanism: Dependency Injection mekanizması uygulanmıştır.
+- Interception Mechanism: Dependency Injection mechanism has been implemented.
 
-- Entity Framework Core & Performance Optimization: Veritabanı işlemleri için Entity Framework Core kullanılmış ve performans optimizasyonları tracing mekanizması yapılmıştır.
+- Entity Framework Core & Performance Optimisation: Entity Framework Core was used for database operations and performance optimisations were made by tracing mechanism.
 
-- Caching: Veritabanı yükünü azaltmak ve yanıt sürelerini iyileştirmek için önbellekleme stratejileri QuizController uygulanmıştır.
+- Caching: QuizController caching strategies have been implemented to reduce database load and improve response times.
 
-- User Secrets: Geliştirme ortamında hassas verilerin yönetimi için User Secrets kullanılmıştır.
+- User Secrets: User Secrets are used for the management of sensitive data in the development environment.
 
-- Helper Classes/Services in Infrastructure Layer: Ortak operasyonlar için altyapı katmanında yeniden kullanılabilir yardımcı sınıflar ve servisler geliştirilmiştir.
+- Helper Classes/Services in Infrastructure Layer: Reusable helper classes and services have been developed in infrastructure layer for common operations.
 
-- Singleton Design Pattern: Singleton deseni user uygulanmıştır.
+- Singleton Design Pattern: Singleton pattern is implemented in user.
 
 
 ##  Projeye Eklenen Özellikler Detay📍
