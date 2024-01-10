@@ -49,7 +49,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
     Domain, Persistence,  Database Design, Configurations, Entities, AuthController, QuizControllers, Identity Mechanism, JWT Token
 
 - #### [Nejla Küçük](https://github.com/nkucukk):
-    User CRUD
+    User CRUD, MediatR 
 - #### Elif Yıldırım:
 
 - #### Furkan Mert Mısırlı:
