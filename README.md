@@ -50,8 +50,8 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 
 - #### [Nejla Küçük](https://github.com/nkucukk):
     User CRUD, MediatR 
-- #### Elif Yıldırım:
-
+- #### [Elif Yıldırım](https://github.com/elif-ux)):
+    User CRUD, Singleton Design Pattern, Fixing the bugs
 - #### Furkan Mert Mısırlı:
   GetBestScoreInQuiz & GenerateRandomQuiz endpoints
   - Random quiz oluşturma özelliği ile sürekli değişen ve çeşitlenen içerikler sunarak kullanıcılara dinamik bir quiz
@@ -67,6 +67,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
     Bu süreçte herhangi bir zorluk yaşamadım.
   
 - Elif Yıldırım:
+    Bu süreçte okul dönemimdeki yoğunluğun takım çalışması haftasına denk gelmesinin birkaç gün sabahlamama sebep olması dışında bir sorun yaşamadım. 
 
 - Furkan Mert Mısırlı:
   İstenilen süreyi geçersiz veya istenmeyen değerlerle talep edilebilmesi sorununa rastlandı. Bu durumu engellemek ve güvenilirlik sağlamak için validasyon sistemine ek kontroller eklenmesi gerekti.
