@@ -50,7 +50,7 @@ Her quizin ayrıntılı bir sayfası bulunmaktadır. Her katılımcının verdi�
 
 - #### [Nejla Küçük](https://github.com/nkucukk):
     User CRUD, MediatR 
-- #### [Elif Yıldırım](https://github.com/elif-ux)):
+- #### [Elif Yıldırım](https://github.com/elif-ux):
     User CRUD, Singleton Design Pattern, Fixing the bugs
 - #### Furkan Mert Mısırlı:
   GetBestScoreInQuiz & GenerateRandomQuiz endpoints
